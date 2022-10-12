@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<conio.h>
+struct node{
+    int data;
+    int power;
+    struct node *next;
+};
+void print_list(struct node *ptr){
+    while(ptr!=NULL){
+        printf("%d",ptr->data);
+        printf("x^%d",ptr->power);
+        printf("+");
+        ptr=ptr->next;
+    }printf("=0");
+     printf("\n");
+}
+void add_poly(struct node *ptr1,struct node *ptr2)
+{
+while(ptr1!=NULL&&ptr2!=NULL)
+    ptr1->data=ptr1->data+ptr2->data;
+   print_list(ptr1); }
+
+void main(){
+    struct node *head1,*head2;
+    struct node *first=malloc(sizeof(struct node));
+    
+    first->data=3;
+    first->power=2;
+    head1=first;
+    
+    first=malloc(sizeof(struct node));
+    
+    first->data=5;
+    first->power=1;
+    head1->next=first;
+    
+    first=malloc(sizeof(struct node));
+    
+    first->data=6;
+    first->power=0;
+    head1->next->next=first;
+    first->next=NULL;
+    
+    struct node *second=malloc(sizeof(struct node));
+    second->data=0;
+    second->power=2;
+    head2=second;
+    
+    second=malloc(sizeof(struct node));
+    second->data=6;
+    second->power=1;
+    head2->next=second;
+    
+    second=malloc(sizeof(struct node));
+    second->data=2;
+    second->power=0;
+    head2->next->next=second;
+    second->next=NULL;
+    
+    print_list(head1);
+    print_list(head2);
+    add_poly(head1,head2);
+    
+    getch();
+}
